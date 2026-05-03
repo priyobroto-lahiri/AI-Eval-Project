@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cost-Effective API Plan — 5 Months, ~$5 Total</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #161b27;
+  --card: #1c2333;
+  --border: #252d3d;
+  --border-light: #2e3a50;
+  --text: #d4dbe8;
+  --text-dim: #7a8699;
+  --text-faint: #3d4d62;
+  --gold: #f0c040;
+  --gold-dim: #3d3010;
+  --gold-glow: rgba(240,192,64,0.12);
+  --green: #3dd68c;
+  --green-dim: #0f2d1e;
+  --red: #f06060;
+  --red-dim: rgba(240,96,96,0.08);
+  --blue: #60a8f0;
+  --blue-dim: #0f1e2d;
+  --purple: #b06cf0;
+  --orange: #f09060;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+body::before {
+  content:'';
+  position:fixed; inset:0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none; z-index:0; opacity:0.4;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(15,17,23,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 20px;
+  display: flex; align-items: center; gap: 2px;
+  overflow-x: auto;
+}
+nav::-webkit-scrollbar { display:none; }
+
+.nav-title {
+  font-size: 12px; font-weight: 700;
+  color: var(--green);
+  white-space: nowrap;
+  padding: 14px 16px 14px 0;
+  border-right: 1px solid var(--border);
+  margin-right: 4px;
+  letter-spacing: 0.04em;
+}
+
+.nav-a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 12px; font-weight: 500;
+  padding: 15px 13px;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all 0.2s;
+}
+.nav-a:hover { color: var(--text); }
+.nav-a.on { color: var(--green); border-color: var(--green); }
+
+/* ── HERO ── */
+.hero {
+  position: relative; z-index: 1;
+  padding: 72px 24px 56px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  background: radial-gradient(ellipse 60% 50% at 50% -10%, rgba(61,214,140,0.08) 0%, transparent 70%);
+}
+
+.hero-tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--green);
+  background: var(--green-dim);
+  border: 1px solid rgba(61,214,140,0.25);
+  padding: 5px 14px; border-radius: 100px;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: clamp(32px, 5vw, 54px);
+  font-weight: 800; line-height: 1.05;
+  letter-spacing: -0.02em; color: #fff;
+  margin-bottom: 14px;
+}
+
+.hero h1 span { color: var(--green); }
+
+.hero-sub {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  color: var(--text-dim); font-size: 16px;
+  max-width: 520px; margin: 0 auto 32px;
+}
+
+.hero-stats {
+  display: inline-flex; flex-wrap: wrap;
+  justify-content: center; gap: 2px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px; overflow: hidden;
+}
+
+.stat {
+  padding: 14px 24px; text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+.stat:last-child { border-right: none; }
+.stat-num { font-family: 'Bricolage Grotesque', sans-serif; font-size: 24px; font-weight: 800; color: var(--green); display: block; line-height: 1; margin-bottom: 4px; }
+.stat-label { font-size: 10px; color: var(--text-faint); letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* ── LAYOUT ── */
+.wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+
+/* ── SECTION ── */
+.sec { padding: 56px 0 0; }
+
+.sec-head { margin-bottom: 28px; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
+.sec-eye { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 6px; }
+.sec-title { font-size: clamp(20px, 3vw, 28px); font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+
+/* ── ANSWER BOX ── */
+.answer-box {
+  background: rgba(61,214,140,0.06);
+  border: 1px solid rgba(61,214,140,0.18);
+  border-left: 3px solid var(--green);
+  border-radius: 0 8px 8px 0;
+  padding: 16px 20px; margin-bottom: 20px;
+}
+.answer-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
+.answer-text { font-size: 14px; color: var(--text); line-height: 1.7; }
+.answer-text strong { color: #fff; }
+
+/* ── HIGHLIGHT / WARN ── */
+.highlight {
+  background: var(--green-dim);
+  border: 1px solid rgba(61,214,140,0.2);
+  border-left: 3px solid var(--green);
+  border-radius: 0 8px 8px 0;
+  padding: 14px 18px; margin-bottom: 16px;
+  font-size: 13px; color: var(--text); line-height: 1.7;
+}
+.highlight strong { color: var(--green); }
+
+.warn {
+  background: var(--red-dim);
+  border: 1px solid rgba(240,96,96,0.2);
+  border-left: 3px solid var(--red);
+  border-radius: 0 8px 8px 0;
+  padding: 14px 18px; margin-bottom: 16px;
+  font-size: 13px; color: var(--text); line-height: 1.7;
+}
+.warn strong { color: var(--red); }
+
+.info {
+  background: var(--blue-dim);
+  border: 1px solid rgba(96,168,240,0.2);
+  border-left: 3px solid var(--blue);
+  border-radius: 0 8px 8px 0;
+  padding: 14px 18px; margin-bottom: 16px;
+  font-size: 13px; color: var(--text); line-height: 1.7;
+}
+.info strong { color: var(--blue); }
+
+/* ── STEP CARDS ── */
+.steps { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+
+.step {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px; overflow: hidden;
+  transition: border-color 0.2s;
+}
+.step:hover { border-color: var(--border-light); }
+
+.step-head {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 16px 20px; cursor: pointer;
+}
+
+.step-num {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--green);
+  color: #000; font-weight: 800; font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px;
+}
+
+.step-num.free { background: var(--green); }
+.step-num.paid { background: var(--orange); color: #000; }
+.step-num.warn-num { background: var(--red); color: #fff; }
+
+.step-meta { flex: 1; }
+.step-title { font-weight: 700; font-size: 15px; color: #fff; margin-bottom: 2px; }
+.step-sub { font-size: 12px; color: var(--text-dim); }
+.step-time { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-faint); white-space: nowrap; margin-top: 6px; flex-shrink: 0; }
+
+.step-body {
+  display: none;
+  padding: 16px 20px 20px 68px;
+  border-top: 1px solid var(--border);
+}
+.step.open .step-body { display: block; }
+.step-body p { font-size: 13px; color: var(--text-dim); line-height: 1.7; margin-bottom: 10px; }
+
+/* ── CODE ── */
+.code-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 6px; }
+
+.code-block {
+  background: #0a0c12;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px; margin: 12px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; color: #b0c4d8;
+  line-height: 1.8; overflow-x: auto;
+  position: relative;
+}
+.code-block .cm { color: var(--text-faint); }
+.code-block .kw { color: var(--purple); }
+.code-block .str { color: var(--green); }
+.code-block .fn { color: var(--blue); }
+.code-block .num { color: var(--orange); }
+.code-block .hl { background: rgba(61,214,140,0.06); display: block; margin: 0 -16px; padding: 0 16px; }
+
+.copy-btn {
+  position: absolute; top: 10px; right: 10px;
+  background: var(--border); border: none;
+  color: var(--text-dim); font-size: 10px;
+  padding: 3px 8px; border-radius: 4px;
+  cursor: pointer; font-family: 'JetBrains Mono', monospace;
+  transition: background 0.2s;
+}
+.copy-btn:hover { background: var(--border-light); color: #fff; }
+
+.tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  background: var(--card); border: 1px solid var(--border);
+  color: var(--blue); padding: 1px 7px; border-radius: 4px;
+}
+
+/* ── COST TABLE ── */
+.cost-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+.cost-table th { background: var(--surface); padding: 10px 14px; text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--border); }
+.cost-table td { padding: 12px 14px; font-size: 13px; border-bottom: 1px solid var(--border); background: var(--card); vertical-align: middle; }
+.cost-table tr:last-child td { border-bottom: none; }
+.cost-table tr:hover td { background: var(--surface); }
+.cost-table td:first-child { font-weight: 700; color: #fff; }
+
+.free-tag { background: var(--green-dim); color: var(--green); border: 1px solid rgba(61,214,140,0.2); padding: 2px 8px; border-radius: 100px; font-size: 11px; font-weight: 700; font-family: 'JetBrains Mono', monospace; white-space: nowrap; }
+.paid-tag { background: rgba(240,144,96,0.12); color: var(--orange); border: 1px solid rgba(240,144,96,0.2); padding: 2px 8px; border-radius: 100px; font-size: 11px; font-weight: 700; font-family: 'JetBrains Mono', monospace; white-space: nowrap; }
+.warn-tag { background: var(--red-dim); color: var(--red); border: 1px solid rgba(240,96,96,0.2); padding: 2px 8px; border-radius: 100px; font-size: 11px; font-weight: 700; font-family: 'JetBrains Mono', monospace; white-space: nowrap; }
+
+/* ── TOOL CARDS ── */
+.tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+
+.tool-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px; padding: 18px;
+  transition: border-color 0.2s;
+}
+.tool-card:hover { border-color: var(--border-light); }
+
+.tool-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+.tool-name { font-weight: 800; font-size: 15px; color: #fff; }
+.tool-url { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-faint); margin-top: 2px; }
+.tool-desc { font-size: 12px; color: var(--text-dim); line-height: 1.6; margin-bottom: 10px; }
+.tool-limits { font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--text-faint); line-height: 1.7; }
+.tool-limits span { color: var(--green); }
+
+/* ── MONTH TIMELINE ── */
+.month-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+
+.month-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px; overflow: hidden;
+}
+
+.month-head {
+  display: flex; align-items: center; gap: 16px;
+  padding: 14px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.month-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 700;
+  padding: 3px 10px; border-radius: 100px;
+  white-space: nowrap; flex-shrink: 0;
+}
+
+.month-title { font-weight: 700; font-size: 14px; color: #fff; flex: 1; }
+.month-cost { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: var(--green); margin-left: auto; white-space: nowrap; }
+.month-cost.warn { color: var(--orange); }
+
+.month-body { padding: 16px 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.month-col-title { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 8px; }
+
+.month-item { display: flex; gap: 8px; font-size: 12px; color: var(--text-dim); margin-bottom: 6px; line-height: 1.5; }
+.month-item::before { content: '→'; color: var(--green); flex-shrink: 0; }
+
+/* ── CHECKLIST ── */
+.mini-check { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+
+.mc-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 8px; cursor: pointer;
+  transition: border-color 0.15s; font-size: 13px;
+}
+.mc-item:hover { border-color: var(--border-light); }
+.mc-item.done { opacity: 0.55; }
+.mc-item.done .mc-box { background: var(--green); border-color: var(--green); }
+.mc-item.done .mc-box::after { display: block; }
+.mc-item.done span { text-decoration: line-through; color: var(--text-faint); }
+
+.mc-box {
+  width: 18px; height: 18px;
+  border: 2px solid var(--border-light);
+  border-radius: 4px; flex-shrink: 0;
+  position: relative; transition: all 0.15s;
+}
+.mc-box::after {
+  content: '✓'; display: none;
+  position: absolute; inset: 0;
+  text-align: center; line-height: 16px;
+  font-size: 11px; font-weight: 700; color: #000;
+}
+
+/* ── METER ── */
+.meter-wrap { margin-bottom: 28px; }
+.meter-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.meter-label { font-size: 12px; font-weight: 600; color: var(--text); width: 90px; flex-shrink: 0; }
+.meter-bar-bg { flex: 1; background: var(--border); border-radius: 100px; height: 8px; overflow: hidden; }
+.meter-bar { height: 100%; border-radius: 100px; transition: width 0.6s ease; }
+.meter-val { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-faint); width: 60px; text-align: right; flex-shrink: 0; }
+
+/* ── TOTAL BILL ── */
+.bill {
+  background: var(--card);
+  border: 1px solid rgba(61,214,140,0.25);
+  border-radius: 12px; overflow: hidden;
+  margin-bottom: 32px;
+}
+
+.bill-header {
+  background: var(--green-dim);
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(61,214,140,0.15);
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.bill-title { font-weight: 800; font-size: 16px; color: var(--green); }
+.bill-sub { font-size: 12px; color: rgba(61,214,140,0.6); margin-top: 2px; }
+
+.bill-rows { padding: 8px 0; }
+
+.bill-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.bill-row:last-child { border-bottom: none; }
+.bill-row.total { background: var(--surface); font-weight: 800; font-size: 15px; }
+
+.bill-item { color: var(--text-dim); }
+.bill-item strong { color: var(--text); display: block; font-size: 12px; }
+.bill-amount { font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+.bill-amount.free { color: var(--green); }
+.bill-amount.cost { color: var(--orange); }
+.bill-amount.total { color: #fff; font-size: 18px; }
+
+/* ── FOOTER ── */
+footer {
+  margin-top: 80px;
+  border-top: 1px solid var(--border);
+  padding: 32px 24px; text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--text-faint);
+  letter-spacing: 0.08em; position: relative; z-index: 1;
+}
+footer strong { color: var(--green); }
+
+@media (max-width: 600px) {
+  .tool-grid { grid-template-columns: 1fr; }
+  .month-body { grid-template-columns: 1fr; }
+  .hero-stats { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-title">💰 API Cost Plan</div>
+  <a href="#truth" class="nav-a on">The Truth</a>
+  <a href="#tools" class="nav-a">Free Tools</a>
+  <a href="#monthly" class="nav-a">Month-by-Month</a>
+  <a href="#setup" class="nav-a">Setup Steps</a>
+  <a href="#safety" class="nav-a">Safety Cap Code</a>
+  <a href="#bill" class="nav-a">Total Bill</a>
+  <a href="#checklist" class="nav-a">Checklist</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">// 5-Month AI Eval Engineering — Cost Strategy</div>
+  <h1>5 Months of API Calls.<br><span>~$5–10 Total.</span></h1>
+  <p class="hero-sub">The exact tools to use each month, when to use free tiers, and the one code snippet that makes surprise bills impossible.</p>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">$0</span><span class="stat-label">Months 1–2</span></div>
+    <div class="stat"><span class="stat-num">$5</span><span class="stat-label">Free Credits</span></div>
+    <div class="stat"><span class="stat-num">$3–5</span><span class="stat-label">Month 3 max</span></div>
+    <div class="stat"><span class="stat-num">$10</span><span class="stat-label">5-month ceiling</span></div>
+  </div>
+</div>
+
+<!-- THE TRUTH -->
+<div class="wrap" id="truth">
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-eye">// First — The Direct Answers</div>
+      <div class="sec-title">What You Actually Need to Know</div>
+    </div>
+
+    <div class="answer-box">
+      <div class="answer-label">Q // Can I use Claude for 5 months and pay only $5 total?</div>
+      <div class="answer-text"><strong>Close, but not exactly.</strong> The $5 free credit from Anthropic is a one-time signup bonus — it does not renew monthly. Once it's gone, you pay for usage. BUT your actual 5-month spend will be <strong>$5–10 total</strong> across all APIs combined — not per month, not per phase. The $100 fear only happens if you accidentally run a broken loop with GPT-4o on thousands of cases. The safety cap code in this guide makes that impossible.</div>
+    </div>
+
+    <div class="answer-box">
+      <div class="answer-label">The strategy in one sentence</div>
+      <div class="answer-text"><strong>Use free tools for all development and testing. Use paid API credits only for your final benchmark runs that go into your README.</strong> Think of paid API calls as "printing costs" — you only print the final version, not every draft. With this approach, you will likely spend <strong>under $8 total</strong> across all 5 months.</div>
+    </div>
+
+    <div class="warn">
+      <strong>The one real risk:</strong> A for-loop that calls GPT-4o accidentally runs 1,000 times instead of 10. That could cost $30 in minutes. The safety cap code in Section 5 of this guide prevents this with 4 lines of Python. Add it to every script before running anything.
+    </div>
+
+    <!-- Cost comparison -->
+    <div style="margin-bottom:24px;">
+      <div style="font-weight:700;color:#fff;font-size:14px;margin-bottom:14px;">What each API actually costs per 1,000 calls</div>
+      <div class="meter-wrap">
+        <div class="meter-row">
+          <div class="meter-label">Gemini Flash</div>
+          <div class="meter-bar-bg"><div class="meter-bar" style="width:2%;background:var(--green)"></div></div>
+          <div class="meter-val" style="color:var(--green)">FREE</div>
+        </div>
+        <div class="meter-row">
+          <div class="meter-label">Groq (Llama)</div>
+          <div class="meter-bar-bg"><div class="meter-bar" style="width:2%;background:var(--green)"></div></div>
+          <div class="meter-val" style="color:var(--green)">FREE</div>
+        </div>
+        <div class="meter-row">
+          <div class="meter-label">Ollama (local)</div>
+          <div class="meter-bar-bg"><div class="meter-bar" style="width:2%;background:var(--green)"></div></div>
+          <div class="meter-val" style="color:var(--green)">FREE</div>
+        </div>
+        <div class="meter-row">
+          <div class="meter-label">Claude Haiku</div>
+          <div class="meter-bar-bg"><div class="meter-bar" style="width:8%;background:var(--blue)"></div></div>
+          <div class="meter-val" style="color:var(--blue)">~$0.03</div>
+        </div>
+        <div class="meter-row">
+          <div class="meter-label">GPT-4o mini</div>
+          <div class="meter-bar-bg"><div class="meter-bar" style="width:15%;background:var(--blue)"></div></div>
+          <div class="meter-val" style="color:var(--blue)">~$0.08</div>
+        </div>
+        <div class="meter-row">
+          <div class="meter-label">Claude Sonnet</div>
+          <div class="meter-bar-bg"><div class="meter-bar" style="width:45%;background:var(--orange)"></div></div>
+          <div class="meter-val" style="color:var(--orange)">~$0.90</div>
+        </div>
+        <div class="meter-row">
+          <div class="meter-label">GPT-4o</div>
+          <div class="meter-bar-bg"><div class="meter-bar" style="width:90%;background:var(--red)"></div></div>
+          <div class="meter-val" style="color:var(--red)">~$3.00</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FREE TOOLS -->
+<div class="wrap" id="tools">
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-eye">// Your Free API Arsenal</div>
+      <div class="sec-title">5 Tools — All Free — Sign Up Day 1</div>
+    </div>
+
+    <div class="highlight"><strong>Rule:</strong> Sign up for all 5 of these on Day 1. Takes 30 minutes total. You will use different ones at different phases — having them all ready means you never pause your work waiting for credits.</div>
+
+    <div class="tool-grid">
+
+      <div class="tool-card" style="border-color:rgba(61,214,140,0.25)">
+        <div class="tool-header">
+          <div>
+            <div class="tool-name">Google AI Studio</div>
+            <div class="tool-url">aistudio.google.com</div>
+          </div>
+          <span class="free-tag">FREE</span>
+        </div>
+        <div class="tool-desc">Gemini 1.5 Flash and 2.0 Flash — fast, capable, completely free with generous daily limits. Your primary development API for Months 1–2.</div>
+        <div class="tool-limits">
+          <span>✓</span> 1,500 requests/day free<br>
+          <span>✓</span> 1M token context window<br>
+          <span>✓</span> No credit card required<br>
+          <span>✓</span> API key in 2 minutes
+        </div>
+      </div>
+
+      <div class="tool-card" style="border-color:rgba(176,108,240,0.25)">
+        <div class="tool-header">
+          <div>
+            <div class="tool-name">Groq</div>
+            <div class="tool-url">console.groq.com</div>
+          </div>
+          <span class="free-tag">FREE</span>
+        </div>
+        <div class="tool-desc">Runs open-source models (Llama 3, Mixtral) at incredible speed. Great for CI/CD pipeline testing in Month 4 where you need fast, cheap calls.</div>
+        <div class="tool-limits">
+          <span>✓</span> 14,400 requests/day free<br>
+          <span>✓</span> Llama 3.3 70B available<br>
+          <span>✓</span> Fastest inference available<br>
+          <span>✓</span> No credit card required
+        </div>
+      </div>
+
+      <div class="tool-card" style="border-color:rgba(96,168,240,0.25)">
+        <div class="tool-header">
+          <div>
+            <div class="tool-name">Ollama</div>
+            <div class="tool-url">ollama.com</div>
+          </div>
+          <span class="free-tag">100% LOCAL</span>
+        </div>
+        <div class="tool-desc">Runs LLMs completely on your laptop. No internet needed, no API key, no cost ever. Use for daily practice and development so you burn zero credits.</div>
+        <div class="tool-limits">
+          <span>✓</span> Unlimited calls, zero cost<br>
+          <span>✓</span> Works offline<br>
+          <span>✓</span> Llama 3.2, Mistral, Phi-3<br>
+          <span>✓</span> Same API format as OpenAI
+        </div>
+      </div>
+
+      <div class="tool-card" style="border-color:rgba(240,192,64,0.25)">
+        <div class="tool-header">
+          <div>
+            <div class="tool-name">Anthropic</div>
+            <div class="tool-url">console.anthropic.com</div>
+          </div>
+          <span class="paid-tag">$5 FREE CREDIT</span>
+        </div>
+        <div class="tool-desc">Sign up gets you $5 free. Use Claude Haiku only — it's the cheapest model and good enough for Months 1–2 final runs. Save credit for benchmark results.</div>
+        <div class="tool-limits">
+          <span>✓</span> $5 one-time free credit<br>
+          <span>✓</span> Haiku: ~$0.001 per 10 calls<br>
+          <span>✓</span> Credit lasts Months 1–2 fully<br>
+          <span style="color:var(--orange)">⚠</span> Only use for final runs
+        </div>
+      </div>
+
+      <div class="tool-card" style="border-color:rgba(240,192,64,0.25); grid-column: span 2;">
+        <div class="tool-header">
+          <div>
+            <div class="tool-name">OpenAI</div>
+            <div class="tool-url">platform.openai.com</div>
+          </div>
+          <span class="paid-tag">$5 FREE CREDIT</span>
+        </div>
+        <div class="tool-desc">Another $5 free credit on signup. Save this specifically for Month 3 — LLM-as-a-Judge requires a strong model. Use GPT-4o-mini as judge (10x cheaper than GPT-4o) and only escalate to GPT-4o for your final 20-case benchmark that goes in your README.</div>
+        <div class="tool-limits" style="display:flex;gap:32px;flex-wrap:wrap;">
+          <div><span>✓</span> $5 one-time free credit<br><span>✓</span> GPT-4o-mini: ~$0.08/1K calls</div>
+          <div><span>✓</span> Save for Month 3 LLM Judge<br><span style="color:var(--orange)">⚠</span> Never use GPT-4o in a loop</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="highlight"><strong>Total free credits available Day 1:</strong> $5 (Anthropic) + $5 (OpenAI) = <strong>$10 combined</strong> before you spend a rupee. Plus unlimited Gemini, Groq, and Ollama calls on top of that.</div>
+
+  </div>
+</div>
+
+<!-- MONTH BY MONTH -->
+<div class="wrap" id="monthly">
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-eye">// Exact Usage Plan</div>
+      <div class="sec-title">Which API to Use — Month by Month</div>
+    </div>
+
+    <p style="color:var(--text-dim);font-size:13px;margin-bottom:24px;">Two modes for every month: <strong>Development mode</strong> (free tools only, use constantly) and <strong>Final run mode</strong> (paid API, used once or twice to generate your README benchmark numbers).</p>
+
+    <div class="month-list">
+
+      <!-- Weeks 1-2 -->
+      <div class="month-card">
+        <div class="month-head">
+          <span class="month-badge" style="background:var(--green-dim);color:var(--green);border:1px solid rgba(61,214,140,0.2)">Weeks 1–2</span>
+          <div class="month-title">Portfolio Setup & Batch Runner</div>
+          <div class="month-cost">$0.00</div>
+        </div>
+        <div class="month-body">
+          <div>
+            <div class="month-col-title">Development (daily)</div>
+            <div class="month-item">Use <strong>Ollama + Llama 3.2</strong> locally to test your batch runner script</div>
+            <div class="month-item">No internet needed, no credits used, run it 100 times</div>
+            <div class="month-item">Use <strong>Gemini API</strong> for any cloud testing</div>
+          </div>
+          <div>
+            <div class="month-col-title">Final Run (once)</div>
+            <div class="month-item">Run your 10-prompt batch against <strong>Claude Haiku</strong> using Anthropic $5 credit</div>
+            <div class="month-item">Estimated cost: <strong>~$0.001</strong> — basically free</div>
+            <div class="month-item">Save the results CSV — this goes in your README</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Month 1 -->
+      <div class="month-card">
+        <div class="month-head">
+          <span class="month-badge" style="background:var(--green-dim);color:var(--green);border:1px solid rgba(61,214,140,0.2)">Month 1</span>
+          <div class="month-title">Text Similarity Engine</div>
+          <div class="month-cost">~$0.05</div>
+        </div>
+        <div class="month-body">
+          <div>
+            <div class="month-col-title">Development (daily)</div>
+            <div class="month-item">Similarity calculations use <strong>no API at all</strong> — pure Python math</div>
+            <div class="month-item">Jaccard, Cosine, ROUGE — all run locally, zero cost</div>
+            <div class="month-item">sentence-transformers runs on your laptop — no API</div>
+          </div>
+          <div>
+            <div class="month-col-title">Final Run (once)</div>
+            <div class="month-item">Generate 20 LLM answers for comparison: <strong>Gemini Flash</strong> (free) vs <strong>Claude Haiku</strong> (~$0.05 from credit)</div>
+            <div class="month-item">Score all 40 answers with your local similarity engine</div>
+            <div class="month-item">Benchmark table → README → GitHub push</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Month 2 -->
+      <div class="month-card">
+        <div class="month-head">
+          <span class="month-badge" style="background:var(--green-dim);color:var(--green);border:1px solid rgba(61,214,140,0.2)">Month 2</span>
+          <div class="month-title">RAG Hallucination Reporter</div>
+          <div class="month-cost">~$0.50</div>
+        </div>
+        <div class="month-body">
+          <div>
+            <div class="month-col-title">Development (daily)</div>
+            <div class="month-item">Build the RAG pipeline using <strong>Gemini Flash</strong> as the generator — completely free</div>
+            <div class="month-item">ChromaDB and embeddings run locally — no cost</div>
+            <div class="month-item">Use <strong>Groq + Llama 3</strong> for fast iteration testing</div>
+          </div>
+          <div>
+            <div class="month-col-title">Final Run (once)</div>
+            <div class="month-item">Run the 50-case hallucination report using <strong>Claude Haiku</strong></div>
+            <div class="month-item">Estimated cost: <strong>~$0.50</strong> from your $5 Anthropic credit</div>
+            <div class="month-item">You still have ~$4.45 credit remaining after this</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Month 3 -->
+      <div class="month-card" style="border-color:rgba(240,144,96,0.2)">
+        <div class="month-head">
+          <span class="month-badge" style="background:rgba(240,144,96,0.12);color:var(--orange);border:1px solid rgba(240,144,96,0.2)">Month 3</span>
+          <div class="month-title">LLM-as-a-Judge Framework ⚠️ Highest Cost Phase</div>
+          <div class="month-cost warn">~$3–5</div>
+        </div>
+        <div class="month-body">
+          <div>
+            <div class="month-col-title">Development (daily)</div>
+            <div class="month-item">Build and test your judge prompts using <strong>Gemini Flash</strong> — completely free</div>
+            <div class="month-item">Test personas using <strong>Groq + Llama 3 70B</strong> — free and strong enough for testing</div>
+            <div class="month-item">Only switch to GPT-4o for your final benchmark</div>
+          </div>
+          <div>
+            <div class="month-col-title">Final Run (once or twice)</div>
+            <div class="month-item">Run 20 docs × 3 personas using <strong>GPT-4o-mini</strong> first (~$0.50 from OpenAI credit)</div>
+            <div class="month-item">Only if GPT-4o-mini doesn't reach 80% IRR, escalate to <strong>GPT-4o</strong> (~$2–4)</div>
+            <div class="month-item"><strong>Strategy:</strong> GPT-4o-mini covers 80% of use cases at 10% of the cost</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Month 4 -->
+      <div class="month-card">
+        <div class="month-head">
+          <span class="month-badge" style="background:var(--green-dim);color:var(--green);border:1px solid rgba(61,214,140,0.2)">Month 4</span>
+          <div class="month-title">CI/CD Eval Pipeline + Agent Evaluator</div>
+          <div class="month-cost">~$1.00</div>
+        </div>
+        <div class="month-body">
+          <div>
+            <div class="month-col-title">Development (daily)</div>
+            <div class="month-item">All Promptfoo testing: use <strong>Groq</strong> as the backend model — free and fast</div>
+            <div class="month-item">GitHub Actions CI runs use <strong>Groq API key</strong> — free tier covers it</div>
+            <div class="month-item">Agent trajectory evaluation: <strong>Ollama locally</strong></div>
+          </div>
+          <div>
+            <div class="month-col-title">Final Run (once)</div>
+            <div class="month-item">Final CI/CD demo using <strong>Claude Haiku</strong> (~$0.50 remaining Anthropic credit)</div>
+            <div class="month-item">25 test cases × a few runs = ~$0.50 total</div>
+            <div class="month-item">This is your flagship demo — worth spending the credit</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Month 5 -->
+      <div class="month-card">
+        <div class="month-head">
+          <span class="month-badge" style="background:var(--green-dim);color:var(--green);border:1px solid rgba(61,214,140,0.2)">Month 5</span>
+          <div class="month-title">Capstone — AI Quality Gates Framework</div>
+          <div class="month-cost">~$0.50</div>
+        </div>
+        <div class="month-body">
+          <div>
+            <div class="month-col-title">Development (daily)</div>
+            <div class="month-item">All three eval stages use <strong>Gemini Flash + Groq</strong> during development</div>
+            <div class="month-item">Streamlit app testing runs against <strong>Ollama locally</strong></div>
+            <div class="month-item">Zero cost until final demo run</div>
+          </div>
+          <div>
+            <div class="month-col-title">Final Run (once)</div>
+            <div class="month-item">The live Hugging Face Spaces demo uses <strong>Gemini Flash</strong> — free for visitors</div>
+            <div class="month-item">Final README benchmark: <strong>Claude Haiku</strong> if credit remains, else Gemini</div>
+            <div class="month-item">Capstone is your interview demo — make it reliable, not expensive</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SETUP STEPS -->
+<div class="wrap" id="setup">
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-eye">// Day 1 Setup — Exact Steps</div>
+      <div class="sec-title">Get All 5 API Keys in 30 Minutes</div>
+    </div>
+
+    <div class="steps">
+
+      <div class="step open" id="s1">
+        <div class="step-head" onclick="tog('s1')">
+          <div class="step-num free">1</div>
+          <div class="step-meta">
+            <div class="step-title">Google AI Studio — Gemini API Key (Free)</div>
+            <div class="step-sub">Your primary development API — use this for everything first</div>
+          </div>
+          <div class="step-time">~5 min</div>
+        </div>
+        <div class="step-body">
+          <p>Go to <strong>aistudio.google.com</strong> → Sign in with Google → click "Get API Key" in the top left → "Create API key" → copy it.</p>
+
+          <div class="code-label">// Test it works — paste in your terminal</div>
+          <div class="code-block">
+<button class="copy-btn" onclick="cp(this)">copy</button>
+pip install google-generativeai
+
+<span class="cm"># Quick test in Python</span>
+<span class="kw">import</span> google.generativeai <span class="kw">as</span> genai
+genai.configure(api_key=<span class="str">"your-gemini-key-here"</span>)
+model = genai.GenerativeModel(<span class="str">"gemini-1.5-flash"</span>)
+response = model.generate_content(<span class="str">"Say hello in one sentence"</span>)
+<span class="fn">print</span>(response.text)
+          </div>
+          <div class="highlight"><strong>Store it in your .env file:</strong> Add <span class="tag">GEMINI_API_KEY=your-key</span> on a new line. Never paste keys directly in code.</div>
+        </div>
+      </div>
+
+      <div class="step" id="s2">
+        <div class="step-head" onclick="tog('s2')">
+          <div class="step-num free">2</div>
+          <div class="step-meta">
+            <div class="step-title">Groq — Free Llama 3 API Key</div>
+            <div class="step-sub">Fastest free API — great for CI/CD pipeline testing</div>
+          </div>
+          <div class="step-time">~5 min</div>
+        </div>
+        <div class="step-body">
+          <p>Go to <strong>console.groq.com</strong> → Sign Up → verify email → click "API Keys" in sidebar → "Create API Key" → name it <span class="tag">eval-projects</span> → copy it.</p>
+
+          <div class="code-label">// Test it works</div>
+          <div class="code-block">
+<button class="copy-btn" onclick="cp(this)">copy</button>
+pip install groq
+
+<span class="kw">from</span> groq <span class="kw">import</span> Groq
+client = Groq(api_key=<span class="str">"your-groq-key"</span>)
+response = client.chat.completions.create(
+    model=<span class="str">"llama-3.3-70b-versatile"</span>,
+    messages=[{<span class="str">"role"</span>: <span class="str">"user"</span>, <span class="str">"content"</span>: <span class="str">"Hello"</span>}]
+)
+<span class="fn">print</span>(response.choices[<span class="num">0</span>].message.content)
+          </div>
+        </div>
+      </div>
+
+      <div class="step" id="s3">
+        <div class="step-head" onclick="tog('s3')">
+          <div class="step-num free">3</div>
+          <div class="step-meta">
+            <div class="step-title">Ollama — Local LLM (No Internet, No Cost)</div>
+            <div class="step-sub">Your daily practice model — use this whenever you're just learning</div>
+          </div>
+          <div class="step-time">~10 min install</div>
+        </div>
+        <div class="step-body">
+          <p>Go to <strong>ollama.com</strong> → Download for your OS → Install → open your terminal:</p>
+
+          <div class="code-block">
+<button class="copy-btn" onclick="cp(this)">copy</button>
+<span class="cm"># Download Llama 3.2 (2GB, one-time download)</span>
+ollama pull llama3.2
+
+<span class="cm"># Test it in terminal</span>
+ollama run llama3.2 "Explain faithfulness in RAG evaluation"
+
+<span class="cm"># Use it in Python (same format as OpenAI SDK)</span>
+pip install openai
+
+<span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(base_url=<span class="str">"http://localhost:11434/v1"</span>, api_key=<span class="str">"ollama"</span>)
+response = client.chat.completions.create(
+    model=<span class="str">"llama3.2"</span>,
+    messages=[{<span class="str">"role"</span>: <span class="str">"user"</span>, <span class="str">"content"</span>: <span class="str">"Hello"</span>}]
+)
+<span class="fn">print</span>(response.choices[<span class="num">0</span>].message.content)
+          </div>
+          <div class="highlight"><strong>This is your default model for learning.</strong> When you're figuring out how code works, testing a new library, or running something 50 times to debug it — use Ollama. Save your API credits for final runs only.</div>
+        </div>
+      </div>
+
+      <div class="step" id="s4">
+        <div class="step-head" onclick="tog('s4')">
+          <div class="step-num paid">4</div>
+          <div class="step-meta">
+            <div class="step-title">Anthropic — $5 Free Credit (Claude Haiku only)</div>
+            <div class="step-sub">Save this for Month 1–2 final benchmark runs</div>
+          </div>
+          <div class="step-time">~5 min</div>
+        </div>
+        <div class="step-body">
+          <p>Go to <strong>console.anthropic.com</strong> → Sign Up → verify email → Settings → API Keys → Create Key → name it <span class="tag">eval-final-runs</span>.</p>
+
+          <div class="warn"><strong>Add a spending limit immediately after signup.</strong> Go to Settings → Billing → Set Monthly Spending Limit → set it to <strong>$5</strong>. This caps your maximum possible spend even if your code runs wild.</div>
+
+          <div class="code-label">// Always use Haiku — never Sonnet or Opus for eval projects</div>
+          <div class="code-block">
+<button class="copy-btn" onclick="cp(this)">copy</button>
+<span class="cm"># Correct — Haiku is cheapest</span>
+model=<span class="str">"claude-haiku-4-5-20251001"</span>   <span class="cm"># ~$0.001 per 10 calls</span>
+
+<span class="cm"># Never use these for batch runs — too expensive</span>
+<span class="cm"># model="claude-sonnet-4-6"       # 30x more expensive</span>
+<span class="cm"># model="claude-opus-4-6"         # 150x more expensive</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step" id="s5">
+        <div class="step-head" onclick="tog('s5')">
+          <div class="step-num paid">5</div>
+          <div class="step-meta">
+            <div class="step-title">OpenAI — $5 Free Credit (Month 3 only)</div>
+            <div class="step-sub">Save entirely for LLM-as-a-Judge in Month 3</div>
+          </div>
+          <div class="step-time">~5 min</div>
+        </div>
+        <div class="step-body">
+          <p>Go to <strong>platform.openai.com</strong> → Sign Up → verify → Settings → API Keys → Create key → name it <span class="tag">llm-judge-month3</span>.</p>
+          <p>Same as Anthropic — immediately set a spending limit: Settings → Billing → Usage limits → set Hard limit to <strong>$5</strong>.</p>
+
+          <div class="code-label">// Month 3 strategy — always try mini first</div>
+          <div class="code-block">
+<button class="copy-btn" onclick="cp(this)">copy</button>
+<span class="cm"># Step 1: Always try GPT-4o-mini first (~$0.08/1K calls)</span>
+model=<span class="str">"gpt-4o-mini"</span>
+
+<span class="cm"># Step 2: Check if IRR >= 80% with mini</span>
+<span class="cm"># If YES → use mini for everything, save your credit</span>
+<span class="cm"># If NO  → escalate only the failing cases to GPT-4o</span>
+
+<span class="cm"># Step 3: Only if you need GPT-4o (~$3/1K calls)</span>
+model=<span class="str">"gpt-4o"</span>   <span class="cm"># use for max 20 final benchmark cases only</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- .env template -->
+    <div style="margin-top:8px;">
+      <div style="font-weight:700;color:#fff;font-size:14px;margin-bottom:12px;">Your complete .env file — all 5 keys in one place</div>
+      <div class="code-label">// .env — in your project root, NEVER push to GitHub</div>
+      <div class="code-block">
+<button class="copy-btn" onclick="cp(this)">copy</button>
+<span class="cm"># Free APIs — use freely for development</span>
+GEMINI_API_KEY=your-gemini-key-here
+GROQ_API_KEY=your-groq-key-here
+
+<span class="cm"># Paid APIs — use ONLY for final benchmark runs</span>
+ANTHROPIC_API_KEY=your-anthropic-key-here
+OPENAI_API_KEY=your-openai-key-here
+
+<span class="cm"># Spending guards — change per project</span>
+MAX_SPEND_USD=1.00
+MAX_API_CALLS=50
+      </div>
+
+      <div class="code-label" style="margin-top:16px;">// Load all keys in any script — one import does everything</div>
+      <div class="code-block">
+<button class="copy-btn" onclick="cp(this)">copy</button>
+<span class="kw">import</span> os
+<span class="kw">from</span> dotenv <span class="kw">import</span> load_dotenv
+load_dotenv()
+
+<span class="cm"># Now use anywhere in your script:</span>
+gemini_key    = os.getenv(<span class="str">"GEMINI_API_KEY"</span>)
+groq_key      = os.getenv(<span class="str">"GROQ_API_KEY"</span>)
+anthropic_key = os.getenv(<span class="str">"ANTHROPIC_API_KEY"</span>)
+openai_key    = os.getenv(<span class="str">"OPENAI_API_KEY"</span>)
+max_spend     = float(os.getenv(<span class="str">"MAX_SPEND_USD"</span>, <span class="str">"1.00"</span>))
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SAFETY CAP -->
+<div class="wrap" id="safety">
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-eye">// The Most Important Code in This Guide</div>
+      <div class="sec-title">The Safety Cap — Add to Every Script</div>
+    </div>
+
+    <div class="warn"><strong>This is not optional.</strong> Add this to every script that calls a paid API. It makes a runaway loop costing $100 physically impossible. Takes 4 lines. Takes 30 seconds to add. Do it before every run.</div>
+
+    <div class="code-label">// Paste this safety wrapper around every API call loop</div>
+    <div class="code-block">
+<button class="copy-btn" onclick="cp(this)">copy</button>
+<span class="kw">import</span> anthropic, os, time
+<span class="kw">from</span> dotenv <span class="kw">import</span> load_dotenv
+load_dotenv()
+
+<span class="cm"># ── SAFETY CAPS ── change these per project ──────────────────</span>
+<span class="hl">MAX_SPEND_USD  = <span class="num">1.00</span>   <span class="cm"># hard stop if cost exceeds this</span></span>
+<span class="hl">MAX_API_CALLS  = <span class="num">50</span>     <span class="cm"># hard stop if calls exceed this</span></span>
+DRY_RUN        = <span class="kw">True</span>   <span class="cm"># set False only when ready for real run</span>
+<span class="cm"># ─────────────────────────────────────────────────────────────</span>
+
+<span class="cm"># Haiku pricing (update if using different model)</span>
+PRICE_INPUT_PER_1K  = <span class="num">0.00025</span>
+PRICE_OUTPUT_PER_1K = <span class="num">0.00125</span>
+
+total_cost  = <span class="num">0.0</span>
+total_calls = <span class="num">0</span>
+client      = anthropic.Anthropic(api_key=os.getenv(<span class="str">"ANTHROPIC_API_KEY"</span>))
+
+<span class="kw">def</span> <span class="fn">safe_call</span>(prompt: str) -> str:
+    <span class="kw">global</span> total_cost, total_calls
+
+    <span class="cm"># ── Guard 1: spending cap ──</span>
+    <span class="kw">if</span> total_cost >= MAX_SPEND_USD:
+        <span class="fn">print</span>(f<span class="str">"🛑 SPEND CAP HIT: ${total_cost:.4f} >= ${MAX_SPEND_USD}"</span>)
+        <span class="kw">return</span> <span class="str">"[CAPPED]"</span>
+
+    <span class="cm"># ── Guard 2: call count cap ──</span>
+    <span class="kw">if</span> total_calls >= MAX_API_CALLS:
+        <span class="fn">print</span>(f<span class="str">"🛑 CALL CAP HIT: {total_calls} calls reached"</span>)
+        <span class="kw">return</span> <span class="str">"[CAPPED]"</span>
+
+    <span class="cm"># ── Guard 3: dry run mode ──</span>
+    <span class="kw">if</span> DRY_RUN:
+        <span class="fn">print</span>(f<span class="str">"🧪 DRY RUN — would call API with: {prompt[:50]}..."</span>)
+        <span class="kw">return</span> <span class="str">"[DRY RUN RESPONSE]"</span>
+
+    <span class="cm"># Real API call only if all guards pass</span>
+    response = client.messages.create(
+        model=<span class="str">"claude-haiku-4-5-20251001"</span>,
+        max_tokens=<span class="num">500</span>,
+        messages=[{<span class="str">"role"</span>: <span class="str">"user"</span>, <span class="str">"content"</span>: prompt}]
+    )
+
+    cost = (response.usage.input_tokens  * PRICE_INPUT_PER_1K  / <span class="num">1000</span> +
+            response.usage.output_tokens * PRICE_OUTPUT_PER_1K / <span class="num">1000</span>)
+
+    total_cost  += cost
+    total_calls += <span class="num">1</span>
+
+    <span class="fn">print</span>(f<span class="str">"✅ Call {total_calls} | Cost: ${cost:.5f} | Running total: ${total_cost:.4f}"</span>)
+    <span class="kw">return</span> response.content[<span class="num">0</span>].text
+
+
+<span class="cm"># ── YOUR LOOP ── replace with your actual prompts ─────────────</span>
+prompts = [<span class="str">"prompt 1"</span>, <span class="str">"prompt 2"</span>, <span class="str">"prompt 3"</span>]  <span class="cm"># your real list</span>
+
+<span class="kw">for</span> prompt <span class="kw">in</span> prompts:
+    result = <span class="fn">safe_call</span>(prompt)
+    <span class="cm"># process result...</span>
+
+<span class="fn">print</span>(f<span class="str">"\n📊 Session Summary"</span>)
+<span class="fn">print</span>(f<span class="str">"   Total calls: {total_calls}"</span>)
+<span class="fn">print</span>(f<span class="str">"   Total cost:  ${total_cost:.4f}"</span>)
+<span class="fn">print</span>(f<span class="str">"   Remaining cap: ${MAX_SPEND_USD - total_cost:.4f}"</span>)
+    </div>
+
+    <div class="highlight">
+      <strong>How to use it safely every time:</strong><br>
+      Step 1: Set <span class="tag">DRY_RUN = True</span> → run once → confirm it loops correctly and hits every prompt<br>
+      Step 2: Set <span class="tag">DRY_RUN = False</span> → set <span class="tag">MAX_SPEND_USD = 0.50</span> → run the real call<br>
+      Step 3: Check the printed total cost before running again<br>
+      Never run with <span class="tag">DRY_RUN = False</span> for the first time on a new script.
+    </div>
+
+  </div>
+</div>
+
+<!-- TOTAL BILL -->
+<div class="wrap" id="bill">
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-eye">// 5-Month Total Cost Breakdown</div>
+      <div class="sec-title">Your Complete Bill — Best and Worst Case</div>
+    </div>
+
+    <div class="bill">
+      <div class="bill-header">
+        <div>
+          <div class="bill-title">5-Month API Bill — Best Case</div>
+          <div class="bill-sub">Using free tools for development + credits for final runs only</div>
+        </div>
+      </div>
+      <div class="bill-rows">
+        <div class="bill-row">
+          <div class="bill-item">Weeks 1–2: Batch Runner<strong>Ollama dev + Haiku final run</strong></div>
+          <div class="bill-amount free">$0.001</div>
+        </div>
+        <div class="bill-row">
+          <div class="bill-item">Month 1: Similarity Engine<strong>Pure Python — no API needed</strong></div>
+          <div class="bill-amount free">$0.05</div>
+        </div>
+        <div class="bill-row">
+          <div class="bill-item">Month 2: Hallucination Reporter<strong>Gemini dev + Haiku final run (50 cases)</strong></div>
+          <div class="bill-amount free">$0.50</div>
+        </div>
+        <div class="bill-row">
+          <div class="bill-item">Month 3: LLM Judge<strong>Groq dev + GPT-4o-mini final run (20 cases)</strong></div>
+          <div class="bill-amount cost">$0.50</div>
+        </div>
+        <div class="bill-row">
+          <div class="bill-item">Month 4: CI/CD Pipeline<strong>Groq dev + Haiku final demo</strong></div>
+          <div class="bill-amount cost">$0.50</div>
+        </div>
+        <div class="bill-row">
+          <div class="bill-item">Month 5: Capstone<strong>Gemini dev + Gemini final (free)</strong></div>
+          <div class="bill-amount free">$0.00</div>
+        </div>
+        <div class="bill-row" style="border-top:1px solid rgba(61,214,140,0.2)">
+          <div class="bill-item" style="color:#fff;font-weight:800">Anthropic free credit used</div>
+          <div class="bill-amount free">−$5.00</div>
+        </div>
+        <div class="bill-row">
+          <div class="bill-item" style="color:#fff;font-weight:800">OpenAI free credit used</div>
+          <div class="bill-amount free">−$0.50</div>
+        </div>
+        <div class="bill-row total">
+          <div class="bill-item" style="color:#fff">5-Month Total Out of Pocket</div>
+          <div class="bill-amount total">$0.00 – $0.55</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bill" style="border-color:rgba(240,144,96,0.25);">
+      <div class="bill-header" style="background:rgba(240,144,96,0.08);border-color:rgba(240,144,96,0.15)">
+        <div>
+          <div class="bill-title" style="color:var(--orange)">5-Month API Bill — Worst Case</div>
+          <div class="bill-sub" style="color:rgba(240,144,96,0.6)">If GPT-4o-mini doesn't reach 80% IRR and you need GPT-4o for Month 3</div>
+        </div>
+      </div>
+      <div class="bill-rows">
+        <div class="bill-row">
+          <div class="bill-item">Months 1–2 + 4–5<strong>Same as best case</strong></div>
+          <div class="bill-amount cost">$1.05</div>
+        </div>
+        <div class="bill-row">
+          <div class="bill-item">Month 3: LLM Judge with GPT-4o<strong>20 final cases + iteration</strong></div>
+          <div class="bill-amount cost">$3–5</div>
+        </div>
+        <div class="bill-row" style="border-top:1px solid rgba(240,144,96,0.2)">
+          <div class="bill-item" style="color:#fff;font-weight:800">Free credits applied</div>
+          <div class="bill-amount free">−$10.00</div>
+        </div>
+        <div class="bill-row total">
+          <div class="bill-item" style="color:#fff">5-Month Total Out of Pocket</div>
+          <div class="bill-amount" style="color:var(--orange);font-size:18px;font-family:'JetBrains Mono',monospace;font-weight:700">$0 – $6</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info"><strong>The $100 scenario only happens if:</strong> You run a loop with GPT-4o that processes 10,000 items instead of 10 (off by 1000x), OR you leave a server running continuously calling an API. The safety cap code above makes both of these physically impossible within your script.</div>
+
+  </div>
+</div>
+
+<!-- CHECKLIST -->
+<div class="wrap" id="checklist">
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-eye">// Day 1 API Setup Checklist</div>
+      <div class="sec-title">Tick Off as You Complete — Saves in Browser</div>
+    </div>
+
+    <div style="background:var(--border);border-radius:100px;height:5px;margin-bottom:6px;overflow:hidden;">
+      <div id="ck-bar" style="height:100%;background:linear-gradient(90deg,var(--green),var(--blue));border-radius:100px;width:0%;transition:width 0.3s;"></div>
+    </div>
+    <div id="ck-label" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-faint);margin-bottom:20px;">0 complete</div>
+
+    <div style="font-weight:700;color:var(--green);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">// Free APIs — Do First</div>
+    <div class="mini-check">
+      <div class="mc-item" onclick="ck(this)"><div class="mc-box"></div><span>Google AI Studio account created at aistudio.google.com</span></div>
+      <div class="mc-item" onclick="ck(this)"><div class="mc-box"></div><span>Gemini API key generated and saved to .env as GEMINI_API_KEY</span></div>
+      <div class="mc-item" onclick="ck(this)"><div class="mc-box"></div><span>Gemini test call runs successfully (printed a response)</span></div>
+      <div class="mc-item" onclick="ck(this)"><div class="mc-box"></div><span>Groq account created at console.groq.com</span></div>
+      <div class="mc-item" onclick="ck(this)"><div class="mc-box"></div><span>Groq API key saved to .env as GROQ_API_KEY</span></div>
+      <div class="mc-item" onclick="ck(this)"><div class="mc-box"></div><span>Ollama installed from ollama.com</span></div>
+      <div class="mc-item" onclick="ck(this)"><div class="mc-box"></div><span>Llama 3.2 pulled with "ollama pull llama3.2"</span></div>
+      <div class="mc-item" onclick="ck(this)"><div class="mc-box"></div><span>Ollama test call runs in Python successfully</span></div>
+    </div>
+
+    <div style="font-weight:700;color:var(--orange);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;margin:20px 0 10px;">// Paid APIs — Signup + Credit Caps</div>
+    <div class="mini-check">
+      <div class="mc-item" onclick="ck(this)"><div class="mc-box"></div><span>Anthropic account created at console.anthropic.com</span></div>
+      <div class="mc-item" onclick="ck(this)"><div class="mc-box"></div><span>Anthropic spending limit set to $5 in Billing settings</span></div>
+      <div class="mc-item" onclick="ck(this)"><div class="mc-box"></div><span>Anthropic API key saved to .env as ANTHROPIC_API_KEY</span></div>
+      <div class="mc-item" onclick="ck(this)"><div class="mc-box"></div><span>OpenAI account created at platform.openai.com</span></div>
+      <div class="mc-item" onclick="ck(this)"><div class="mc-box"></div><span>OpenAI spending limit set to $5 in Usage limits settings</span></div>
+      <div class="mc-item" onclick="ck(this)"><div class="mc-box"></div><span>OpenAI API key saved to .env as OPENAI_API_KEY — labelled "Month 3 only"</span></div>
+    </div>
+
+    <div style="font-weight:700;color:var(--red);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;margin:20px 0 10px;">// Safety Setup — Non-Negotiable</div>
+    <div class="mini-check">
+      <div class="mc-item" onclick="ck(this)"><div class="mc-box"></div><span>.env file created with all 5 keys — NOT committed to GitHub</span></div>
+      <div class="mc-item" onclick="ck(this)"><div class="mc-box"></div><span>.gitignore includes .env on its own line</span></div>
+      <div class="mc-item" onclick="ck(this)"><div class="mc-box"></div><span>Safety cap function copied into your Project 0.2 script</span></div>
+      <div class="mc-item" onclick="ck(this)"><div class="mc-box"></div><span>DRY_RUN = True test completed successfully before real run</span></div>
+      <div class="mc-item" onclick="ck(this)"><div class="mc-box"></div><span>Confirmed Anthropic billing dashboard shows $5 spending cap active</span></div>
+      <div class="mc-item" onclick="ck(this)"><div class="mc-box"></div><span>Confirmed OpenAI billing dashboard shows $5 hard limit active</span></div>
+    </div>
+
+  </div>
+</div>
+
+<footer style="padding-bottom:48px;">
+  <strong>COST-EFFECTIVE API PLAN</strong> — AI EVAL ENGINEER PLACEMENT SYSTEM<br>
+  <span style="color:#2a3545;margin-top:6px;display:block;">5 months · ~$5–10 total · Progress saves in browser · April 2026</span>
+</footer>
+
+<script>
+// Step toggle
+function tog(id) { document.getElementById(id).classList.toggle('open'); }
+
+// Copy
+function cp(btn) {
+  const text = btn.parentElement.innerText.replace('copy','').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'copied!';
+    setTimeout(() => btn.textContent = 'copy', 1500);
+  });
+}
+
+// Checklist
+function ck(el) { el.classList.toggle('done'); save(); updateBar(); }
+
+function save() {
+  const s = Array.from(document.querySelectorAll('.mc-item')).map(e => e.classList.contains('done'));
+  localStorage.setItem('cost-checks', JSON.stringify(s));
+}
+
+function updateBar() {
+  const all  = document.querySelectorAll('.mc-item').length;
+  const done = document.querySelectorAll('.mc-item.done').length;
+  const pct  = Math.round(done/all*100);
+  document.getElementById('ck-bar').style.width = pct+'%';
+  document.getElementById('ck-label').textContent = `${done} of ${all} complete — ${pct}%`;
+}
+
+function load() {
+  const s = JSON.parse(localStorage.getItem('cost-checks') || '[]');
+  document.querySelectorAll('.mc-item').forEach((el,i) => { if(s[i]) el.classList.add('done'); });
+  updateBar();
+}
+
+// Nav active
+const navLinks = document.querySelectorAll('.nav-a');
+const secs = ['truth','tools','monthly','setup','safety','bill','checklist'];
+window.addEventListener('scroll', () => {
+  let cur = 'truth';
+  secs.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 100) cur = id;
+  });
+  navLinks.forEach(l => l.classList.toggle('on', l.getAttribute('href') === '#'+cur));
+});
+
+load();
+</script>
+</body>
+</html>
