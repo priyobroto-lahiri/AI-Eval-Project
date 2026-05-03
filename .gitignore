@@ -41,3 +41,4 @@ MANIFEST
 results/
 data/
 !data/prompts.csv
+docs/
