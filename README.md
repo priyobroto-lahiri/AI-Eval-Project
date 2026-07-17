@@ -1,7 +1,3 @@
-# AI Evaluation Engineer Portfolio
-
-This repository tracks my 5-month transition from Quality Engineering to AI Evaluation Engineering. It contains a collection of LLM benchmarks, EvalOps scripts, and statistical evaluation tools.
-
 ## 🚀 Current Project: Project 0.2 - LLM Batch Runner
 A robust Python-based pipeline for running batch prompts through LLM APIs (starting with Gemini 1.5 Flash) with:
 - **Resilient API Calls:** Nested error handling for network and safety blocks.
